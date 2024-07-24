@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["http://localhost:5173"],
+      "origin": ["https://clabed.vercel.app/"],
       "method": ["GET", "POST", "PUT", "DELETE"],
       "maxAgeSeconds": 3600,
       "responseHeader": ["Content-Type"]

@@ -33,7 +33,7 @@ const Update = () => {
     const fetchCar = async () => {
       if (id) {
         try {
-          const response = await fetch(`http://localhost:4000/api/vehicles/${id}`);
+          const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`);
           const data = await response.json();
           if (response.ok) {
             setCar(data);
@@ -88,7 +88,7 @@ const Update = () => {
 
       const updatedCar = { ...car, images: imageUrl };
 
-      const response = await fetch(`http://localhost:4000/api/vehicles/${id}`, {
+      const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedCar),
         headers: {
@@ -225,7 +225,7 @@ const Update = () => {
 
         <label>
           Engine Type:
-          
+
           <span className="input">
             <input type="text" name="engineType" value={car.engineType} onChange={handleChange} />
           </span>

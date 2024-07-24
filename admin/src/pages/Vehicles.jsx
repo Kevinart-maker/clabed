@@ -12,7 +12,7 @@ const Vehicles = () => {
         const fetchVehicles = async ()=>{
   
             try {
-                const response = await fetch('http://localhost:4000/api/vehicles')
+                const response = await fetch('https://clabed-server.vercel.app/api/vehicles')
                 
                 // Check if the response is okay and the content type is JSON
                 if (!response.ok) {

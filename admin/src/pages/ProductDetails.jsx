@@ -9,7 +9,7 @@ const ProductDetails = ({product}) => {
     
     const { dispatch } = useProductsContext()
     const handleClick = async () =>{
-        const response = await fetch('http://localhost:4000/api/vehicles/' + product._id, {
+        const response = await fetch('https://clabed-server.vercel.app/api/vehicles/' + product._id, {
             method: 'DELETE'
         })
         const json = await response.json()

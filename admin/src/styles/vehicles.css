@@ -152,3 +152,29 @@
   .visib{
     display: flex;
   }
+
+  @media (max-width: 800px) {
+    .vehicle-nav span{
+      display: none;
+    }
+    .products .vehicle-nav button{
+      width: auto;
+    }
+    
+  .product-details .top-sec{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  .product-details .text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  }

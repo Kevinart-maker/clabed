@@ -135,7 +135,7 @@ const Update = () => {
     <div>
       <h1 className="crumb">
         <NavLink to='/vehicles'>Vehicles /</NavLink>
-        <NavLink to='/create' className='scnd-nav'>Edit Vehicle</NavLink>
+        <NavLink to='' className='scnd-nav'>Edit Vehicle</NavLink>
       </h1>
       <form className="create" onSubmit={handleSubmit}>
         <label>

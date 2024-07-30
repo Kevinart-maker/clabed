@@ -11,9 +11,16 @@ const userRoutes = require('./routes/user')
 // Express app
 const app = express();
 
+const corsOptions = {
+    origin: 'https://clabed.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+    maxAge: 3600
+  };
+
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     // console.log(req.path, req.method);

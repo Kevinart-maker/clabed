@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const cors = require('cors');
+const userRoutes = require('./routes/user')
 
 // Express app
 const app = express();
@@ -51,6 +52,7 @@ const searchVehicles = async (req, res) => {
 // Routes
 app.use('/api/vehicles/', vehicleRoutes);
 app.use('/api/vehicle/search', searchVehicles);
+app.use('/api/user', userRoutes);
 
 // Connect to MongoDB and start the server
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })

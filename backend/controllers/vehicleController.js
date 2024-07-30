@@ -85,7 +85,8 @@ const createVehicle = async (req, res)=>{
 
     // add doc to db
     try{
-        const vehicle = await Vehicles.create({ make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, location, images })
+        const user_id = req.user._id
+        const vehicle = await Vehicles.create({ make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, location, images, user_id })
         res.status(200).json(vehicle)
     }catch (error){
         res.status(400).json({error: error.message})

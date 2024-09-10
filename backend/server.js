@@ -13,7 +13,7 @@ const app = express();
 
 const allowedOrigins = [
     'https://clabed.vercel.app',
-    'https://another-frontend.com'
+    'https://clabed-frontend.vercel.app'
 ];
 
 const corsOptions = {

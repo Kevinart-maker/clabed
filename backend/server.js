@@ -12,11 +12,10 @@ const userRoutes = require('./routes/user')
 const app = express();
 
 const corsOptions = {
-    origin: 'https://clabed.vercel.app/',
+    origin: 'https://clabed.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200,
   };
 
 // Middleware
@@ -29,18 +28,6 @@ app.use((req, res, next) => {
     console.log(`${req.method} request for '${req.url}'`);
     next();
 });
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://clabed.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);  // Respond OK to preflight
-    }
-    next();
-});
-
 
 // search vehicles
 const searchVehicles = async (req, res) => {

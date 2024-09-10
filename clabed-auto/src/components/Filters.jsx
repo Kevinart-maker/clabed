@@ -30,16 +30,6 @@ const VehiclesPage = () => {
     return (
         <div>
             <PriceFilter />
-            {/* <LocationFilter onChange={(value) => handleFilterChange('location', value)} />
-            <PriceFilter onChange={(value) => handleFilterChange('price', value)} />
-            <MakeFilter onChange={(value) => handleFilterChange('make', value)} />
-            <YearFilter onChange={(value) => handleFilterChange('year', value)} />
-            <ConditionFilter onChange={(value) => handleFilterChange('condition', value)} />
-            <TransmissionFilter onChange={(value) => handleFilterChange('transmission', value)} />
-            <ColorFilter onChange={(value) => handleFilterChange('color', value)} />
-            <FuelTypeFilter onChange={(value) => handleFilterChange('fuelType', value)} />
-
-            <button onClick={applyFilters}>Apply Filters</button> */}
         </div>
     );
 };

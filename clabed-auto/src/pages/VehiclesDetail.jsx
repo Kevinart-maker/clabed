@@ -14,7 +14,7 @@ const VehiclesDetail = () => {
         // Fetch the product details using the ID from the URL
         const fetchProduct = async () => {
           try {
-            const response = await fetch(`/api/vehicles/${id}`);
+            const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`);
             const data = await response.json();
             setVehicle(data); // Update state with the fetched product details
           } catch (error) {

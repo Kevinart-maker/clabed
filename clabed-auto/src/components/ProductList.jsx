@@ -10,7 +10,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/api/vehicles'); // Adjust the URL as necessary
+        const response = await axios.get('https://clabed-server.vercel.app/api/vehicles'); // Adjust the URL as necessary
         setProducts(response.data);
         setLoading(false);
       } catch (error) {

@@ -11,8 +11,19 @@ const userRoutes = require('./routes/user')
 // Express app
 const app = express();
 
+const allowedOrigins = [
+    'https://clabed.vercel.app',
+    'https://another-frontend.com'
+];
+
 const corsOptions = {
-    origin: ['https://clabed.vercel.app', 'https://clabed-frontend.vercel.app'],
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);  // Allow request
+        } else {
+            callback(new Error('Not allowed by CORS'));  // Reject request
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

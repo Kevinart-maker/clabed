@@ -9,6 +9,7 @@ const Navbar = () => {
     const handleClick = () =>{
         logout()
     }
+    console.log('Logged in user: ', user)
 
     return ( 
         <nav>
@@ -19,19 +20,17 @@ const Navbar = () => {
             
             {user && (          
                 <ul className="nav-list">
-                    <div>
-                        <span>signed in as {user.email}</span>
-                        <button onClick={handleClick}>Log out</button>
-                    </div>  
-                    <NavLink to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
-                    <NavLink to='/vehicles'><i className="fa-solid fa-car"></i> Vehicles</NavLink>
+                    <NavLink to='/'><i className="fa-solid fa-house"></i> <span>Home</span></NavLink>
+                    <NavLink to='/vehicles'><i className="fa-solid fa-car"></i> <span>Vehicles</span></NavLink>
+                    {user.role === 'admin' && (
+                        <NavLink to='/admins'><i className="fa-solid fa-user"></i> <span>Admins</span></NavLink>
+                    )}
+                    <a onClick={handleClick}><i className="fa-solid fa-right-from-bracket"></i> <span>Log out</span></a>
+                    <p className="signed">
+                        <div>Signed in as: </div> 
+                        <div className="email">{user.email}</div>
+                    </p>
                 </ul>
-            )}
-            {!user && (
-                <div>
-                    <NavLink to="/login">Login</NavLink>
-                    <NavLink to="/signup">Signup</NavLink>
-                </div>
             )}
         </nav>
     );

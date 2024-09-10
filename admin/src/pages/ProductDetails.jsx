@@ -1,16 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import { useProductsContext } from '../hooks/useProductsContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { useState } from 'react'
 
 const ProductDetails = ({product}) => {
     const [ info, setInfo ] = useState(false)
+    const { user } = useAuthContext()
     
     const { dispatch } = useProductsContext()
     const handleClick = async () =>{
-        const response = await fetch('https://clabed-server.vercel.app/api/vehicles/' + product._id, {
-            method: 'DELETE'
+        const response = await fetch('/api/vehicles/' + product._id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
         const json = await response.json()
 
@@ -37,7 +42,8 @@ const ProductDetails = ({product}) => {
                     <h4>{product.make}</h4>
                     <p>{product.model}</p>
                     <p>{product.year}</p>
-                    <p><strong># </strong>{product.price}</p>
+                    <p>{product.quantity}</p>
+                    <p><strong><i id='price' className="fa-solid fa-naira-sign"></i></strong>{product.price}</p>
                     <p><strong>Location: </strong>{product.location}</p>
                     <p>{formatDistanceToNow(new Date(product.createdAt), { addSuffix: true })}</p>
                     <NavLink to={`/update/${product._id}`}>

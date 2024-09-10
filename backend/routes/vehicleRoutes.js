@@ -6,26 +6,27 @@ const{
     deleteVehicle,
     updateVehicle
 } = require('../controllers/vehicleController')
-const requireAuth = require('../middleware/requireAuth')
+const { requireAuth, requireAdmin } = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-// require auth for all workout routes
-router.use(requireAuth)
-
+// public routes
 // get all vehicles
 router.get('/', getVehicles)
 
+
+// Admin routes (e.g., for adding, updating, or deleting vehicles)
+// These routes require authentication and admin role
 // get single vehicle
 router.get('/:id', getVehicle)
 
 // Post a new vehicle
-router.post('/', createVehicle)
+router.post('/',requireAuth , createVehicle)
 
 // delete a vehicle
-router.delete('/:id', deleteVehicle)
+router.delete('/:id',requireAuth , deleteVehicle)
 
 // update a vehicle
-router.patch('/:id', updateVehicle)
+router.patch('/:id',requireAuth , updateVehicle)
 
 module.exports = router

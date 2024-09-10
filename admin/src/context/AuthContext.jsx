@@ -22,6 +22,7 @@ export const AuthContextProvider = ({ children }) => {
         const user = JSON.parse(localStorage.getItem('user'))
 
         if(user){
+            console.log('User from localStorage:', user); // Check if 'role' is here
             dispatch({ type: 'LOGIN', payload: user })
         }
     }, [])

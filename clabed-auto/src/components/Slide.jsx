@@ -4,7 +4,7 @@ import '@splidejs/react-splide/css';
 
 
 
-const Home = () => {
+const Slide = () => {
     return ( 
         <section className="home">
             <Splide
@@ -62,4 +62,4 @@ const Home = () => {
     );
 }
  
-export default Home;
+export default Slide;

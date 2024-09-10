@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
     return ( 
         <footer>
@@ -12,7 +14,9 @@ const Footer = () => {
             
             <div className="bottom-sec">
                 <div className="left-sec">
-                    <h1 className="logo">CLABED</h1>
+                    <div className="logo">
+                        <NavLink to='/'>CLABED</NavLink>
+                    </div>
                     <div className="label">
                         <p>Suscribe to receive inventory & price updates</p>
                         <label>
@@ -53,14 +57,22 @@ const Footer = () => {
             <div className="final-bottom-sec">
                 <div className="left-sec">
                     © 2024 Clabed Autos. All rights reserved.
+                    <div className="des">
+                        Designed by <a className="des-link" href="http://niveksti.vercel.app">Niveksti</a>
+                    </div>
                 </div>
                 <div className="right-sec">
                     <h3>FOLLOW US ON SOCIAL MEDIA</h3>
                     <ul className="social-icons">
-                        <i className="fa-brands fa-facebook"></i>
-                        <i className="fa-brands fa-instagram"></i>
-                        <i className="fa-brands fa-twitter"></i>
-                        <i className="fa-brands fa-tiktok"></i>
+
+                        <a href="https://www.facebook.com/clabedautosng?mibextid=ZbWKwL"><i className="fa-brands fa-facebook"></i></a>
+                        
+                        <a href="https://www.instagram.com/clabedautos?igsh=MzRlODBiNWFlZA=="><i className="fa-brands fa-instagram"></i></a>
+
+                        <a href="https://x.com/clabedautos?t=55GxUl-cLFF8bPmOOqnuLw&s=09"><i className="fa-brands fa-twitter"></i></a>
+
+                        <a href="https://www.tiktok.com/@clabedautos?_t=8pbkwAJPluH&_r=1"><i className="fa-brands fa-tiktok"></i></a>
+                        
                     </ul>
                 </div>
             </div>

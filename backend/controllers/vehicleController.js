@@ -2,11 +2,43 @@ const mongoose = require('mongoose')
 const Vehicles = require('../modules/productModel')
 
 // get all vehicles
-const getVehicles = async (req, res) =>{
-    const vehicles = await Vehicles.find({}).sort({createdAt: -1})
+const getVehicles = async (req, res) => {
+    const { make, location, price, year, condition, transmission, color, fuelType } = req.query;
 
-    res.status(200).json(vehicles)
-}
+    let filter = {};
+
+    if (make) {
+        filter.make = make;
+    }
+    if (location) {
+        filter.location = location;
+    }
+    if (price) {
+        filter.price = { $lte: price }; // Assuming you want vehicles with a price less than or equal to the specified value
+    }
+    if (year) {
+        filter.year = year;
+    }
+    if (condition) {
+        filter.condition = condition;
+    }
+    if (transmission) {
+        filter.transmission = transmission;
+    }
+    if (color) {
+        filter.color = color;
+    }
+    if (fuelType) {
+        filter.fuelType = fuelType;
+    }
+
+    try {
+        const vehicles = await Vehicles.find(filter).sort({ createdAt: -1 });
+        res.status(200).json(vehicles);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 // get a single vehicle
 const getVehicle = async (req, res)=>{
@@ -27,7 +59,7 @@ const getVehicle = async (req, res)=>{
 
 // create a new vehicle
 const createVehicle = async (req, res)=>{
-    const { make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, vin, location, images } = req.body
+    const { make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, quantity, location, images } = req.body
 
     let emptyFields = []
 
@@ -73,6 +105,9 @@ const createVehicle = async (req, res)=>{
     if(!interiorMaterial){
         emptyFields.push('interiorMaterial')
     }
+    if(!quantity){
+        emptyFields.push('quantity')
+    }
     if(!location){
         emptyFields.push('location')
     }
@@ -86,7 +121,7 @@ const createVehicle = async (req, res)=>{
     // add doc to db
     try{
         const user_id = req.user._id
-        const vehicle = await Vehicles.create({ make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, location, images, user_id })
+        const vehicle = await Vehicles.create({ make, model, year, price, mileage, condition, available, engineType, transmission, fuelType, exteriorColor, interiorColor, interiorMaterial, quantity, location, images, user_id })
         res.status(200).json(vehicle)
     }catch (error){
         res.status(400).json({error: error.message})

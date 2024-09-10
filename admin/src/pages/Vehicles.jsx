@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useProductsContext } from "../hooks/useProductsContext";
+import { useAuthContext } from '../hooks/useAuthContext'
 import ProductDetails from "./ProductDetails";
 import Search from "../components/Search";
 
 const Vehicles = () => {
     const {products, dispatch} = useProductsContext()
     const [error, setError] = useState(null)
+    const { user } = useAuthContext()
   
     useEffect(()=>{
         const fetchVehicles = async ()=>{
   
             try {
-                const response = await fetch('https://clabed-server.vercel.app/api/vehicles')
+                const response = await fetch('/api/vehicles', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                })
                 
                 // Check if the response is okay and the content type is JSON
                 if (!response.ok) {

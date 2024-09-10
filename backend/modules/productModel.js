@@ -11,11 +11,12 @@ const carSchema = new Schema({
     condition: { type: String, required: true, enum: ['foreign', 'local'] },
     available: { type: String, required: true, enum: ['available', 'sold'] },
     engineType: { type: String, required: true },
-    transmission: { type: String, required: true },
-    fuelType: { type: String, required: true },
+    transmission: { type: String, required: true, enum: ['Automatic', 'CVT', 'AMT', 'Manual'] },
+    fuelType: { type: String, required: true, enum: ['petrol', 'diesel', 'hybrid', 'electric', 'cng'] },
     exteriorColor: { type: String, required: true },
     interiorColor: { type: String, required: true },
-    interiorMaterial: { type: String, required: true },
+    interiorMaterial: { type: String, required: true, enum: ['fabric', 'leather']},
+    quantity: { type: Number, required: true },
     location: { type: String, required: true },
     images: [{
         type: String

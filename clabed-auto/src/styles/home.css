@@ -7,9 +7,6 @@ img{
     overflow: hidden;
     z-index: 1;
 }
-.home{
-    padding: 1rem 3rem;
-}
 .home .first-slide{
     background: linear-gradient(270deg, #eb4c25, #f3f714, var(--primary-color));
     background-size: 600% 600%;

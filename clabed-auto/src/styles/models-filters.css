@@ -1,0 +1,106 @@
+.model-filters{
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+.model-filter{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+.model-filter:hover{
+    background-color: #fffbdb;
+    border-radius: 1rem;
+}
+.model-filters img{
+    max-width: 100%;
+    width: 5rem;
+}
+
+.price-container{
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid;
+    padding: 1rem;
+    border-radius: 0.8rem;
+}
+
+.price-filters div{
+    display: flex;
+    gap: 1rem;
+}
+.price-filters input{
+    width: 1rem;
+}
+
+.price-filters .price-range{
+    display: flex;
+    flex-direction: column;
+
+}
+.price-filters .min-max{
+    display: flex;
+    flex-direction: column;
+}
+.price-filters .min-max label{
+    display: flex;
+    gap: 1rem;
+}
+.price-filters .min-max label input{
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #000000;
+}
+
+.price-filters .buttons{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-filters .buttons button{
+    background: none;
+    border: none;
+}
+.price-filters .buttons .clr-btn{
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.price-container .price-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.plus{
+    cursor: pointer;
+}
+.plus span{
+    width: 15px;
+    height: 1px;
+    background-color: #000000;
+    display: flex;
+}
+.plus .one{
+    transform: rotate(90deg);
+}
+
+.price-down{
+    overflow: hidden;
+    height: 0rem;
+}
+.price-up{
+    height: auto;
+    transition: 0.3s height ease;
+}
+
+@media (max-width: 900px) {
+.model-filters{
+    display: none;
+}
+}

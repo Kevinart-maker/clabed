@@ -12,7 +12,7 @@ const userRoutes = require('./routes/user')
 const app = express();
 
 const corsOptions = {
-    origin: 'https://clabed.vercel.app',
+    origin: 'http://localhost:5173/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
     maxAge: 3600
@@ -27,26 +27,45 @@ app.use((req, res, next) => {
     console.log(`${req.method} request for '${req.url}'`);
     next();
 });
+
+// search vehicles
 const searchVehicles = async (req, res) => {
     const { query } = req.query;
     console.log("Searched query: ", query)
     try {
+        if (!query) {
+            // If the query is empty, return all vehicles
+            const vehicles = await Vehicles.find({});
+            console.log('Found all vehicles:', vehicles);
+            return res.status(200).json(vehicles);
+        }
+        
+        
+        const numericFields = ['year', 'mileage'];
+        const queryConditions = [];
+
+        // Construct query conditions based on the query
+        if (query) {
+            const numericQuery = Number(query);
+            if (!isNaN(numericQuery)) {
+                // Handle numeric fields
+                numericFields.forEach(field => {
+                    queryConditions.push({ [field]: numericQuery });
+                });
+            }
+            // Handle string fields
+            const stringFields = [
+                'make', 'model', 'condition', 'available', 'engineType', 
+                'transmission', 'fuelType', 'exteriorColor', 'interiorColor', 
+                'interiorMaterial', 'location'
+            ];
+            stringFields.forEach(field => {
+                queryConditions.push({ [field]: { $regex: query, $options: 'i' } });
+            });
+        }
+
         const vehicles = await Vehicles.find({
-            $or: [
-                { make: { $regex: query, $options: 'i' } },
-                { model: { $regex: query, $options: 'i' } },
-                { year: { $regex: query, $options: 'i' } },
-                { mileage: { $regex: query, $options: 'i' } },
-                { condition: { $regex: query, $options: 'i' } },
-                { available: { $regex: query, $options: 'i' } },
-                { engineType: { $regex: query, $options: 'i' } },
-                { transmission: { $regex: query, $options: 'i' } },
-                { fuelType: { $regex: query, $options: 'i' } },
-                { exteriorColor: { $regex: query, $options: 'i' } },
-                { interiorColor: { $regex: query, $options: 'i' } },
-                { interiorMaterial: { $regex: query, $options: 'i' } },
-                { location: { $regex: query, $options: 'i' } },
-            ]
+            $or: queryConditions
         });
         console.log('Found vehicles:', vehicles);
         res.status(200).json(vehicles);

@@ -22,7 +22,7 @@
 }
 
 nav{
-  width: 20rem;
+  width: fit-content;
   height: 100vh;
   background-color: #f16e22;
   display: flex;
@@ -52,13 +52,14 @@ nav a{
 }
 nav a:hover{
   background-color: #fff;
-  color: #000000;
+  color: #f16e22;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  transform: scale(1.1);
 }
 nav a.active{
   background-color: #fff;
-  color: #000000;
+  color: #f16e22;
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -66,6 +67,26 @@ nav .nav-list{
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+nav .nav-list .logged{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+nav .nav-list button{
+  background: none;
+  border: none;
+}
+nav .nav-list .signed{
+  font-size: 0.6rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  width: 5rem;
+}
+nav .nav-list .signed div.email{
+  font-weight: 600;
+  font-size: 0.7rem;
 }
 
 div.error {
@@ -78,6 +99,11 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+div.msg{
+  border: 1px solid green;
+  padding: 1rem;
+  width: fit-content;
 }
 
 @media (max-width: 800px) {
@@ -98,14 +124,17 @@ input.error {
     width: 100%;
     left: 0;
     padding: 0.6rem;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-between;
+    gap: 0;
     z-index: 200;
   }
   nav a{
-    border: 1px solid #fff;
     color: #fff;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
   }
+  nav .nav-list span{
+    font-size: 0.5rem;
+  }
+nav .nav-list .signed{
+  display: none;
+}
 }

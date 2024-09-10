@@ -13,36 +13,44 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    role: {
+        type: String, 
+        enum: ['user', 'admin'],
+        default: 'user'
     }
 })
 
-// static signup method
-userSchema.statics.signup = async function(email, password){
-
-    // validation
-    if(!email || !password){
-        throw Error('All fields must be filled')
-    }
-    if(!validator.isEmail(email)){
-        throw Error('Email is not valid')
-    }
-    if(!validator.isStrongPassword(password)){
-        throw Error('Password is not strong enough')
-    }
+// Static signup method
+userSchema.statics.signup = async function (email, password, role) {
     
-    const exists = await this.findOne({ email })
-
-    if(exists){
-        throw Error('Email already exists')
+    // Validation
+    if (!email || !password || !role) {
+      throw Error('All fields must be filled');
     }
-
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(password, salt)
-
-    const user = await this.create({ email, password: hash })
-
-    return user
-}
+    if (!validator.isEmail(email)) {
+      throw Error('Email is not valid');
+    }
+    if (!validator.isStrongPassword(password)) {
+      throw Error('Password is not strong enough');
+    }
+    if (!['user', 'admin'].includes(role)) {
+      throw Error('Role is not valid');
+    }
+  
+    const exists = await this.findOne({ email });
+  
+    if (exists) {
+      throw Error('Email already exists');
+    }
+  
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+  
+    const user = await this.create({ email, password: hash, role });
+  
+    return user;
+  };
 
 // static login method
 userSchema.statics.login = async function(email, password){

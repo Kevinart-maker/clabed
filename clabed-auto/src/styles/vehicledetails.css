@@ -1,0 +1,126 @@
+.vehicles-detail .vehicle-slide-container{
+    width: 45rem;
+}
+
+.vehicles-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.vehicles-detail .top-sec{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.vehicles-detail .left-sec{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 20rem;
+}
+
+.vehicles-detail .left-sec p{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.vehicles-detail .left-sec h1{
+    font-size: 2rem;
+}
+.vehicles-detail .left-sec h2{
+    font-size: 1.5rem;
+}
+.vehicles-detail .left-sec .briefs{
+    display: flex;
+    gap: 1rem;
+}
+
+.vehicles-detail .left-sec .briefs div{
+    padding: 0.8rem;
+    font-weight: 600;
+    background-color: #d3d3cf;
+    border-radius: 0.5rem;
+}
+
+.vehicles-detail .left-sec a{
+    font-weight: 700;
+    font-size: 1.2rem;
+    background-color: #f16e22;
+    color: #fff;
+    padding: 1rem;
+    width: fit-content;
+}
+
+
+.vehicles-detail .detail-sec{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+    background-color: #ebebe6;
+    padding: 2rem;
+    border-radius: 0.8rem;
+}
+.vehicles-detail .detail-sec .overview{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.vehicles-detail .detail-sec h1{
+    font-size: 1.7rem;
+}
+.vehicles-detail .detail-sec h2{
+    font-size: 1.5rem;
+}
+.vehicles-detail .detail-sec .icons{
+    display: flex;
+    gap: 2rem;
+}
+.vehicles-detail .detail-sec .icons div{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.vehicles-detail .detail-sec .icons img{
+    width: 5rem;
+}
+
+.vehicles-detail .info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.vehicles-detail .info-hero{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.vehicles-detail .info-hero .info-cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.vehicles-detail .info-hero .info-cards p{
+    font-size: 1rem;
+}
+.vehicles-detail .info-hero .info-cards span{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #f16e22;
+}
+
+
+@media (max-width: 900px) {
+    .vehicles-detail .left-sec{
+        width: fit-content;
+    }
+    .vehicles-detail .info-hero{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

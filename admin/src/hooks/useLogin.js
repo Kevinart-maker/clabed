@@ -5,12 +5,13 @@ export const useLogin = ()=>{
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
     const { dispatch } = useAuthContext()
+    const [msg, setMsg] = useState('')
 
     const login = async(email, password)=>{
         setLoading(true)
         setError(null)
 
-        const response = await fetch('https://clabed-server.vercel.app/api/user/login', {
+        const response = await fetch('/api/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
@@ -29,8 +30,9 @@ export const useLogin = ()=>{
             dispatch({type: 'LOGIN', payload: json})
 
             setLoading(false)
+            setMsg('Login successful!')
         }
     }
 
-    return{ login, loading, error }
+    return{ login, loading, error, msg }
 }

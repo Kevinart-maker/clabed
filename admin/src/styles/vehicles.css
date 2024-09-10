@@ -24,7 +24,7 @@
     display: flex;
     gap: 1rem;
   }
-  .products .vehicle-nav .search{
+ .search{
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -33,7 +33,7 @@
     padding: 0.6rem;
     width: 100%;
   }
-  .products .vehicle-nav input{
+  .search input{
     border: none;
     outline: none;
     background: none;
@@ -153,6 +153,10 @@
   .visib{
     display: flex;
   }
+
+ i#price{
+  border: none;
+ }
 
   @media (max-width: 800px) {
     .vehicle-nav span{

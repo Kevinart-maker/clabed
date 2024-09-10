@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from 'react-router-dom';
+
 
 export const useSignup = ()=>{
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
-    const { dispatch } = useAuthContext()
+    const [msg, setMsg] = useState('')
+    const navigate = useNavigate()
 
-    const signup = async(email, password)=>{
+    const signup = async(email, password, role)=>{
         setLoading(true)
         setError(null)
 
-        const response = await fetch('https://clabed-server.vercel.app/api/user/signup', {
+        const response = await fetch('/api/user/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({email, password, role})
         })
         const json = await response.json()
 
@@ -22,15 +24,14 @@ export const useSignup = ()=>{
             setError(json.error)
         }
         if(response.ok){
-            // save the user to local storage
-            localStorage.setItem('user', JSON.stringify(json))
-
-            // update the auth context
-            dispatch({type: 'LOGIN', payload: json})
-
             setLoading(false)
+            setMsg('User created successfully')
+
+            // setInterval(()=>{
+            //     navigate('/vehicles')
+            // }, 2000)
         }
     }
 
-    return{ signup, loading, error }
+    return{ signup, loading, error, msg }
 }

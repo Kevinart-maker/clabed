@@ -2,11 +2,13 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useProductsContext } from "../hooks/useProductsContext";
+import { useAuthContext } from '../hooks/useAuthContext'
 import storage from "../firebase";
 
 const Update = () => {
   
   const { dispatch } = useProductsContext();
+  const { user } = useAuthContext();
   const { id } = useParams(); // Get the product ID from the URL
   const navigate = useNavigate();
   const [car, setCar] = useState({
@@ -18,12 +20,12 @@ const Update = () => {
     condition: 'local',
     available: 'available',
     engineType: '',
-    transmission: '',
-    fuelType: '',
+    transmission: 'Automatic',
+    fuelType: 'petrol',
     exteriorColor: '',
     interiorColor: '',
-    interiorMaterial: '',
-    registrationInfo: '',
+    interiorMaterial: 'leather',
+    quantity: '',
     location: '',
     images: [],
   });
@@ -33,7 +35,7 @@ const Update = () => {
     const fetchCar = async () => {
       if (id) {
         try {
-          const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`);
+          const response = await fetch(`/api/vehicles/${id}`);
           const data = await response.json();
           if (response.ok) {
             setCar(data);
@@ -88,11 +90,12 @@ const Update = () => {
 
       const updatedCar = { ...car, images: imageUrl };
 
-      const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`, {
+      const response = await fetch(`/api/vehicles/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedCar),
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
         },
       });
 
@@ -110,12 +113,12 @@ const Update = () => {
           condition: 'local',
           available: 'available',
           engineType: '',
-          transmission: '',
-          fuelType: '',
+          transmission: 'Automatic',
+          fuelType: 'petrol',
           exteriorColor: '',
           interiorColor: '',
-          interiorMaterial: '',
-          registrationInfo: '',
+          interiorMaterial: 'leather',
+          quantity: '',
           location: '',
           images: [],
         });
@@ -233,18 +236,26 @@ const Update = () => {
 
         <label>
           Transmission:
-
           <span className="input">
-            <input type="text" name="transmission" value={car.transmission} onChange={handleChange} />
+            <select name="transmission" value={car.transmission} onChange={handleChange}>
+              <option value="Automatic">Automatic</option>
+              <option value="CVT">CVT</option>
+              <option value="AMT">AMT</option>
+              <option value="Manual">Manual</option>
+            </select>
           </span>
         </label>
-        
 
         <label>
           Fuel Type:
-
           <span className="input">
-            <input type="text" name="fuelType" value={car.fuelType} onChange={handleChange} />
+            <select name="fuelType" value={car.fuelType} onChange={handleChange}>
+              <option value="petrol">petrol</option>
+              <option value="diesel">diesel</option>
+              <option value="hybrid">hybrid</option>
+              <option value="electric">electric</option>
+              <option value="cng">CNG</option>
+            </select>
           </span>
         </label>
         
@@ -266,12 +277,22 @@ const Update = () => {
           </span>
         </label>
         
-
         <label>
           Interior Material:
+          <span className="input">
+            <select name="interiorMaterial" value={car.interiorMaterial} onChange={handleChange}>
+              <option value="fabric">fabric</option>
+              <option value="leather">leather</option>
+            </select>
+          </span>
+        </label>
+
+
+        <label>
+          Quantity:
 
           <span className="input">
-            <input type="text" name="interiorMaterial" value={car.interiorMaterial} onChange={handleChange} />
+            <input type="number" name="quantity" value={car.quantity} onChange={handleChange} />
           </span>
         </label>
         

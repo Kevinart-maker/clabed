@@ -14,7 +14,8 @@ export const useLogin = ()=>{
         const response = await fetch('https://clabed-server.vercel.app/api/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({email, password}),
+            credentials: 'include'
         })
         const json = await response.json()
 

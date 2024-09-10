@@ -14,7 +14,8 @@ const app = express();
 const corsOptions = {
     origin: 'https://clabed.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
     maxAge: 3600
   };
 

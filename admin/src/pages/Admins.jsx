@@ -21,7 +21,7 @@ const AllUsers = () => {
     const fetchUsers = async () => {
       try {
         // Replace with your backend URL
-        const response = await axios.get('/api/user/', {
+        const response = await axios.get('https://clabed-server.vercel.app/api/user/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }

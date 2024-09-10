@@ -14,13 +14,13 @@ const SearchUser = ({ onUsersFetched }) => {
             let response;
             if (!searchQuery) {
                 // Fetch all users if searchQuery is empty
-                response = await fetch('/api/user', {
+                response = await fetch('https://clabed-server.vercel.app/api/user', {
                     headers: {
                         'Authorization': `Bearer ${user.token}`
                     }
                 });
             } else {
-                response = await fetch(`/api/user/search?query=${searchQuery}`, {
+                response = await fetch(`https://clabed-server.vercel.app/api/user/search?query=${searchQuery}`, {
                     headers: {
                         'Authorization': `Bearer ${user.token}`
                     }

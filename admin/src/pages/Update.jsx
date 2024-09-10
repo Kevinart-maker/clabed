@@ -35,7 +35,7 @@ const Update = () => {
     const fetchCar = async () => {
       if (id) {
         try {
-          const response = await fetch(`/api/vehicles/${id}`);
+          const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`);
           const data = await response.json();
           if (response.ok) {
             setCar(data);

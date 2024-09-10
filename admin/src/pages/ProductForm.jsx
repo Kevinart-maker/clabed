@@ -74,7 +74,7 @@ const ProductForm = () => {
 
             console.log("Car Object: ", carData)
 
-            const response = await fetch('/api/vehicles', {
+            const response = await fetch('https://clabed-server.vercel.app/api/vehicles', {
                 method: 'POST',
                 body: JSON.stringify(carData),
                 headers: {

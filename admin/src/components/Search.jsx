@@ -14,9 +14,9 @@ const Search = () => {
             if (!searchQuery) {
                 // Fetch all products if searchQuery is empty
                 
-                response = await fetch('/api/vehicles');
+                response = await fetch('https://clabed-server.vercel.app/api/vehicles');
             } else {
-                response = await fetch(`/api/vehicle/search?query=${searchQuery}`);
+                response = await fetch(`https://clabed-server.vercel.app/api/vehicle/search?query=${searchQuery}`);
             }
             
             const data = await response.json();

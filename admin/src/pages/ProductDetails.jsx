@@ -11,7 +11,7 @@ const ProductDetails = ({product}) => {
     
     const { dispatch } = useProductsContext()
     const handleClick = async () =>{
-        const response = await fetch('/api/vehicles/' + product._id, {
+        const response = await fetch('https://clabed-server.vercel.app/api/vehicles/' + product._id, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -18,6 +17,7 @@ import './styles/create.css'
 import './styles/admins.css'
 import Update from './pages/Update'
 import Admins from './pages/Admins'
+import NotFound from './pages/NotFound'
 
 function App() {
   const { user } = useAuthContext()
@@ -34,6 +34,7 @@ function App() {
           <Route path='/vehicles' element={user ? <Vehicles /> : <Navigate to="/login"/>}/>
           <Route path='/create' element={user ? <ProductForm /> : <Navigate to="/login"/>} />
           <Route path="/update/:id" element={user ? <Update /> : <Navigate to="/login"/>} />
+          <Route path='*' element={<NotFound />}/>
         </Routes>
       </div>
     </section>

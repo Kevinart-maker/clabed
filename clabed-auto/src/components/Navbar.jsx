@@ -63,9 +63,9 @@ const Navbar = () => {
                 <div className={`nav-mobile ${navig}`}>
                     <div className="top-sec">
                         <i onClick={handleClick} className="fa-solid fa-xmark ham-close"></i>
-                <div className="right-sec">
-                    <SearchBar />
-                </div>
+                        <div className="right-sec">
+                            <SearchBar />
+                        </div>
                         <a href="https://api.whatsapp.com/send/?phone=2348033218452&text&type=phone_number&app_absent=0">
                             Sell on Clabed
                         </a>
@@ -79,7 +79,7 @@ const Navbar = () => {
                             <HashLink smooth to="/#works">How it works</HashLink>
                         </li>
                         <li>
-                            <NavLink to=''>Contact Us</NavLink>
+                            <NavLink to='/contact'>Contact Us</NavLink>
                         </li>
                     </div>
                 </div>

@@ -37,6 +37,7 @@
     border: none;
     outline: none;
     background: none;
+    width: 100%;
   }
   .products .vehicle-nav button:hover{
     opacity: 0.8;

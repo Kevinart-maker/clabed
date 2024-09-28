@@ -40,6 +40,11 @@
     padding: 1rem;
     position: relative;
 }
+.admin ul li .user-btm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .admin ul .line{
     position: absolute;
     bottom: 0;

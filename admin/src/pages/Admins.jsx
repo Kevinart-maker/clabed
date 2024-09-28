@@ -77,15 +77,17 @@ const AllUsers = () => {
           {users.map(user => (
             <li key={user._id}>
               <p>Email: {user.email}</p>
-              <p className={`roles ${user.role}`}>{
-                  user.role === 'admin' ? 'Super Admin' 
-                  : user.role === 'user' ? 'Admin' 
-                  : ''
-                }
-              </p>
+              <div className="user-btm">
+                <p className={`roles ${user.role}`}>{
+                    user.role === 'admin' ? 'Super Admin' 
+                    : user.role === 'user' ? 'Admin' 
+                    : ''
+                  }
+                </p>
+                <i className="fa-solid fa-trash" onClick={()=> handleClick(user._id)}></i>
+              </div>
               <div className="line"></div>
               {/* Add other user details as needed */}
-              <i className="fa-solid fa-trash" onClick={()=> handleClick(user._id)}></i>
             </li>
           ))}
         </ul>

@@ -14,6 +14,26 @@ const AllUsers = () => {
   const handleUsersFetched = (fetchedUsers) => {
     setUsers(fetchedUsers);
   };
+
+  const handleClick = async (userId) => {
+    try {
+      const response = await fetch(`https://clabed-server.vercel.app/api/user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
+  
+      if (response.ok) {
+        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId)); // Remove deleted user
+      } else {
+        console.log('Error occurred!');
+      }
+    } catch (err) {
+      console.log('Failed to delete user:', err);
+    }
+  };
+  
   
 
   useEffect(() => {
@@ -65,6 +85,7 @@ const AllUsers = () => {
               </p>
               <div className="line"></div>
               {/* Add other user details as needed */}
+              <i className="fa-solid fa-trash" onClick={()=> handleClick(user._id)}></i>
             </li>
           ))}
         </ul>

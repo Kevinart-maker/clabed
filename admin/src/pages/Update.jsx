@@ -90,7 +90,7 @@ const Update = () => {
 
       const updatedCar = { ...car, images: imageUrl };
 
-      const response = await fetch(`/api/vehicles/${id}`, {
+      const response = await fetch(`https://clabed-server.vercel.app/api/vehicles/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(updatedCar),
         headers: {

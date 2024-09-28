@@ -1,7 +1,7 @@
 const express = require('express');
 
 // Controller functions
-const { signupUser, loginUser, getAllUsers, searchUsers } = require('../controllers/userController');
+const { signupUser, loginUser, getAllUsers, searchUsers, deleteUser } = require('../controllers/userController');
 const { requireAuth, requireAdmin } = require('../middleware/requireAuth');
 
 const router = express.Router();
@@ -29,5 +29,8 @@ router.get('/admin-only', requireAuth, requireAdmin, (req, res) => {
 
 // Search users
 router.get('/search', requireAuth, requireAdmin, searchUsers);
+
+// delete users
+router.delete('/:id', requireAuth, requireAdmin, deleteUser);
 
 module.exports = router;

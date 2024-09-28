@@ -43,7 +43,7 @@ const Search = () => {
         <div className="search">
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <input 
-                    type="text"
+                    type="search"
                     placeholder="Search for vehicles"
                     value={query}
                     onChange={handleChange}

@@ -51,7 +51,7 @@ const SearchUser = ({ onUsersFetched }) => {
         <div className="search">
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <input 
-                    type="text"
+                    type="search"
                     placeholder="Search for users"
                     value={query}
                     onChange={handleChange}

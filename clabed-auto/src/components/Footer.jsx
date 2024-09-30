@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link'
 
 const Footer = () => {
     return ( 
@@ -30,16 +31,14 @@ const Footer = () => {
                     <div className="clabed">
                         <h3>Clabed</h3>
                         <div className="lists">
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">How it works</a></li>
-                            <li><a href="#">Grading Process</a></li>
+                            <li><NavLink to="/vehicles">Shop</NavLink></li>
+                            <li><HashLink to='/#works'>How it works</HashLink></li>
                         </div>
                     </div>
                     <div className="trading">
                         <h3>Trading</h3>
                         <div className="lists">
-                            <li><a href="#">Shop</a></li>
-                            <li><a href="#">Apply to sell</a></li>
+                            <li><a href="https://api.whatsapp.com/send/?phone=2348033218452&text&type=phone_number&app_absent=0" className="sell-btn">Sell on Clabed</a></li>
                             <li><a href="#">Lowest Price</a></li>
                             <li><a href="#">Highest Bids</a></li>
                         </div>
@@ -48,7 +47,7 @@ const Footer = () => {
                         <h3>Help</h3>
                         <div className="lists">
                             <li><a href="#">Payments</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><NavLink to='/contact'>Contact Us</NavLink></li>
                         </div>
                     </div>
                 </div>

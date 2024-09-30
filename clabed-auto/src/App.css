@@ -120,7 +120,7 @@ nav .mobile-nav{display: none;}
   gap: 2rem;
 }
 
-.not-found h1, h2{
+.not-found h1, .not-found h2{
   font-size: 2rem;
 }
 .not-found a:hover{

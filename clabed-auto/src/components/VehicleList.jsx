@@ -99,6 +99,7 @@ const VehicleList = () => {
   }, [location.search]);
 
   console.log('slice is ', slice)
+  console.log('filtered llegnth ', filteredVehicles.length)
 
   return (
     <div className="vehi">
@@ -123,7 +124,11 @@ const VehicleList = () => {
           </div>
         ))}
       </div>
-      <button onClick={handleSlice}>Load More</button>
+      {
+        slice >= filteredVehicles.length ? 'no more vehicles..' : (
+          <button onClick={handleSlice}>Load More</button>
+        )
+      }
     </div>
   );
 };

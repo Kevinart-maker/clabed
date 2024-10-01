@@ -30,6 +30,7 @@ const Update = () => {
     images: [],
   });
   const [error, setError] = useState(null);
+  const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
     const fetchCar = async () => {
@@ -77,6 +78,7 @@ const Update = () => {
     }
 
     try {
+      setLoading(true)
       let imageUrl = car.images;
       if (car.images.length > 0 && typeof car.images[0] !== 'string') {
         imageUrl = await Promise.all(
@@ -320,7 +322,7 @@ const Update = () => {
         </label>
 
 
-      <button type="submit">Submit</button>
+        <button type="submit">{loading ? 'creating..' : 'Submit'}</button>
     </form>
     {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>

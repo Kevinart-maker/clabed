@@ -30,6 +30,7 @@ const ProductForm = () => {
 
   const [ emptyFields, setEmptyFields ] = useState([ ])
   const [ error, setError ] = useState(null)
+  const [ loading, setLoading ] = useState(false)
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -58,6 +59,7 @@ const ProductForm = () => {
     }
 
     try {
+      setLoading(true)
             const imageUrl = await Promise.all(
               car.images.map(async (image) => {
                 const storageRef = ref(storage, `images/${image.name}`);
@@ -89,6 +91,7 @@ const ProductForm = () => {
                 setError(json.error);
                 setEmptyFields(json.emptyFields);
             } else {
+              setLoading(false)
                 setCar({
                   make: '',
                   model: '',
@@ -308,7 +311,7 @@ const ProductForm = () => {
         </label>
 
 
-        <button type="submit">Submit</button>
+        <button type="submit">{loading ? 'creating..' : 'Submit'}</button>
         {error && <div style={{ color: 'red' }}>{error}</div>}
       </form>
     </div>

@@ -1,5 +1,18 @@
+.vehicle-thumbnails-container img {
+    cursor: pointer;
+    border-color: #f16e22;
+    transition: border-color 0.3s;
+}
+  
+.vehicle-thumbnails-container{
+    width: 45rem;
+} 
+
+
 .vehicles-detail .vehicle-slide-container{
     width: 45rem;
+    height: 20rem;
+    overflow: hidden;
 }
 
 .vehicles-detail{
@@ -122,5 +135,13 @@
     .vehicles-detail .info-hero{
         display: grid;
         grid-template-columns: auto auto;
+    }
+    .vehicle-thumbnails-container{
+        width: 95vw;
+    } 
+    
+    
+    .vehicles-detail .vehicle-slide-container{
+        width: 95vw;
     }
 }

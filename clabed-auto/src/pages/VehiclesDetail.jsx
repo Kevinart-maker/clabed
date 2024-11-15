@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 import '@splidejs/react-splide/css';
 
 import ProductList from '../components/ProductList'
+import About from "../components/About";
 
 const VehiclesDetail = () => {
     const { id } = useParams();
@@ -34,22 +35,76 @@ const VehiclesDetail = () => {
       </SplideSlide>
     )) : null;
 
+
+    const mainSliderRef = useRef(null);
+  const thumbsSliderRef = useRef(null);
+
+  // Options for the main slider
+  const mainOptions = {
+    arrows: true,
+    rewind: true,
+    type: 'loop',
+    gap: '1rem',
+    autoplay: true,
+  };
+
+  // Options for the thumbnails slider
+  const thumbsOptions = {
+    fixedWidth: 110,
+    fixedHeight: 70,
+    isNavigation: true,
+    gap: '0.1rem',
+    focus: 'center',
+    pagination: false,
+    cover: true,
+    rewind: true,
+  };
+
+
     return (
         <div className="vehicles-detail">
+
           <div className="top-sec">
-            <Splide
-              options={{
-                arrows: true,
-                rewind: true,
-                type : 'loop',
-                gap: '1rem',
-                autoplay : true,
-              }}
-              aria-label = "My Favorite Images"
-              className="vehicle-slide-container"
-            >
-              {vehicleImages}
-            </Splide>
+              {/* <Splide
+                options={{
+                  arrows: true,
+                  rewind: true,
+                  type : 'loop',
+                  gap: '1rem',
+                  autoplay : true,
+                }}
+                aria-label = "My Favorite Images"
+                className="vehicle-slide-container"
+              >
+                {vehicleImages}
+              </Splide> */}
+            <div className="vehicle-slider-with-thumbnails">
+              {/* Main slider */}
+              <Splide
+                options={mainOptions}
+                ref={mainSliderRef}
+                aria-label="Vehicle Images Slider"
+                className="vehicle-slide-container"
+              >
+                {vehicleImages}
+              </Splide>
+
+              {/* Thumbnails slider */}
+              <Splide
+                options={thumbsOptions}
+                ref={thumbsSliderRef}
+                aria-label="Thumbnails Navigation"
+                className="vehicle-thumbnails-container"
+                onMounted={() => {
+                  // Sync thumbnails with the main slider
+                  if (mainSliderRef.current && thumbsSliderRef.current) {
+                    mainSliderRef.current.sync(thumbsSliderRef.current.splide);
+                  }
+                }}
+              >
+                {vehicleImages}
+              </Splide>
+            </div>
 
             <div className="left-sec">
               <p>
@@ -126,7 +181,7 @@ const VehiclesDetail = () => {
               </div>
             </div>
           </div>
-
+          <About />
          <ProductList />
         </div>
     );
